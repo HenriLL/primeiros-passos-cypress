@@ -1,25 +1,17 @@
-const elementList ={
-  visitSite: 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
-  usernameField: "[name='username']",
-  passwordField: "[name='password']",
-  loginButton: "[type='submit']",
-  sectionTitleTopBar: ".oxd-topbar-header-breadcrumb > .oxd-text",
-  dashboardGrid: "orangehrm-dashboard-grid",
-  wrongCredentialAlert: "[role='alert']"
-}
-
-const userData ={
-  userSucess:{
-    username: 'Admin',
-    password: 'admin123'
-  },
-  userFail:{
-    username: 'teste',
-    password: 'teste'
-  }
-}
+import userData from '../fixtures/userData.json'
 
 describe('Orange HRM Tests', () => {
+
+  const elementList ={
+    visitSite: 'https://opensource-demo.orangehrmlive.com/web/index.php/auth/login',
+    usernameField: "[name='username']",
+    passwordField: "[name='password']",
+    loginButton: "[type='submit']",
+    sectionTitleTopBar: ".oxd-topbar-header-breadcrumb > .oxd-text",
+    dashboardGrid: "orangehrm-dashboard-grid",
+    wrongCredentialAlert: "[role='alert']"
+  }
+
   it('Login sucess', () => {
     cy.visit(elementList.visitSite)
     cy.get(elementList.usernameField).type(userData.userSucess.username)

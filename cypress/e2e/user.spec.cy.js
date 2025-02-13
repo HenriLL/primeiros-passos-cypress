@@ -8,16 +8,25 @@ describe('Orange HRM Tests', () => {
     loginButton: "[type='submit']",
     sectionTitleTopBar: ".oxd-topbar-header-breadcrumb > .oxd-text",
     dashboardGrid: "orangehrm-dashboard-grid",
-    wrongCredentialAlert: "[role='alert']"
+    wrongCredentialAlert: "[role='alert']",
+    myInfoButton : "[href='/web/index.php/pim/viewMyDetails']",
+    userName: ".--name-grouped-field > :nth-child(1) > :nth-child(2) > .oxd-input",
+    userLastName: ".--name-grouped-field > :nth-child(2) > :nth-child(2) > .oxd-input",
+    userUser: ":nth-child(3) > :nth-child(2) > .oxd-input"
   }
 
-  it('Login sucess', () => {
+  it.only('User Info Update sucess', () => {
     cy.visit('/auth/login')
     cy.get(elementList.usernameField).type(userData.userSucess.username)
     cy.get(elementList.passwordField).type(userData.userSucess.password)
     cy.get(elementList.loginButton).click()
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
     cy.get(elementList.sectionTitleTopBar).contains('Dashboard')
+    cy.get(elementList.myInfoButton).click()
+    cy.get(elementList.userName).clear().type('First Name')
+    cy.get(elementList.userLastName).clear().type('Last Name')
+    cy.get(elementList.userUser).clear().type('Only User')
+
   }) 
 
   it('Login Fail', () => {

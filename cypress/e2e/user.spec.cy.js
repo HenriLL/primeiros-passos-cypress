@@ -15,7 +15,9 @@ describe('Orange HRM Tests', () => {
     userUser: ":nth-child(3) > :nth-child(2) > .oxd-input",
     driversLicense: ":nth-child(2) > :nth-child(1) > .oxd-input-group > :nth-child(2) > .oxd-input",
     dateField: ":nth-child(2) > .oxd-input-group > :nth-child(2) > .oxd-date-wrapper > .oxd-date-input > .oxd-input",
-    layout: ".oxd-layout-context"
+    layout: ".oxd-layout-context",
+    saveButton: ":nth-child(1) > .oxd-form > .oxd-form-actions > .oxd-button",
+    saveMessenge: ".oxd-toast"
   }
 
   it.only('User Info Update sucess', () => {
@@ -32,6 +34,8 @@ describe('Orange HRM Tests', () => {
     cy.get(elementList.driversLicense).clear().type('12345')
     cy.get(elementList.dateField).clear().type('2025-04-01')
     cy.get(elementList.layout).click()
+    cy.get(elementList.saveButton).click()
+    cy.get(elementList.saveMessenge).contains('Successfully Update')
   }) 
 
   it('Login Fail', () => {

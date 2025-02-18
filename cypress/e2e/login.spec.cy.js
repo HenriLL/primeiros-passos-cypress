@@ -1,3 +1,6 @@
+import userData from '../fixtures/userData.json'
+
+
 describe('template spec', () => {
   
  const selectorList = {
@@ -7,11 +10,13 @@ describe('template spec', () => {
     sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
     wrongCredentialAlert: ".oxd-alert"
   }
+
+  
   
   it('Login - passes', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get(selectorList.userNameField).type('Admin')
-    cy.get(selectorList.passwordField).type('admin123')
+    cy.get(selectorList.userNameField).type(userData.userSucess.username)
+    cy.get(selectorList.passwordField).type(userData.userSucess.password)
     cy.get(selectorList.loginButton).click()
     cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
     cy.get(selectorList.sectionTitleTopBar).contains('Dashboard')
@@ -19,8 +24,8 @@ describe('template spec', () => {
 
   it('Login - Fail', () => {
     cy.visit('https://opensource-demo.orangehrmlive.com/web/index.php/auth/login')
-    cy.get(selectorList.userNameField).type('teste')
-    cy.get(selectorList.passwordField).type('teste')
+    cy.get(selectorList.userNameField).type(userData.userFail.username)
+    cy.get(selectorList.passwordField).type(userData.userFail.password)
     cy.get(selectorList.loginButton).click()
     cy.get(selectorList.wrongCredentialAlert)
   })

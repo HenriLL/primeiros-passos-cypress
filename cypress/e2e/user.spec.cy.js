@@ -1,15 +1,17 @@
 import userData from '../fixtures/userData.json'
 import LoginPage from '../pages/loginPage'
 import DashBoardPage from '../pages/dashboardPage'
+import MenuPage from '../pages/menuPage'
 
 
 const loginPage = new LoginPage()
 const dashboardPage = new DashBoardPage()
+const menuPage = new MenuPage()
 
 describe('template spec', () => {
   
  const selectorList = {
-    myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
+    
     firstNameField: "[name='firstName']",
     midleNameField: "[name='middleName']",
     lastNameField: "[name='lastName']",
@@ -28,15 +30,19 @@ describe('template spec', () => {
   
   it.only('User Info Update - Sucesses', () => {
     loginPage.acessLoginPage()
-    loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
+    loginPage.loginWithAnyUser(userData.userSucess.username, userData.userSucess.password)
     dashboardPage.verifyDashboardPage()
+    menuPage.acessingAdmin()
+
+// FAZER O RESTANTE DOS MENUS
+    menuPage.acessigMyInfo()
     
     /*
     
 
     
     
-    cy.get(selectorList.myInfoButton).click()
+    
     cy.get(selectorList.firstNameField).clear().type('First Name Test')
     cy.get(selectorList.midleNameField).clear().type('Midle Name Test')
     cy.get(selectorList.lastNameField).clear().type('Last Name Test')
@@ -59,7 +65,7 @@ describe('template spec', () => {
 
   it('Login - Fail', () => {
     loginPage.acessLoginPage()
-    loginPage.loginWithUser(userData.userFail.password, userData.userFail.password)
+    loginPage.loginWithAnyUser(userData.userFail.password, userData.userFail.password)
     loginPage.selectorsList().wrongCredentialAlert
   })
 })

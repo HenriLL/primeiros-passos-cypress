@@ -1,12 +1,14 @@
 import userData from '../fixtures/userData.json'
 import LoginPage from '../pages/loginPage'
+import DashBoardPage from '../pages/dashboardPage'
+
 
 const loginPage = new LoginPage()
+const dashboardPage = new DashBoardPage()
 
 describe('template spec', () => {
   
  const selectorList = {
-    sectionTitleTopBar: ".oxd-topbar-header-breadcrumb-module",
     myInfoButton: "[href='/web/index.php/pim/viewMyDetails']",
     firstNameField: "[name='firstName']",
     midleNameField: "[name='middleName']",
@@ -27,11 +29,13 @@ describe('template spec', () => {
   it.only('User Info Update - Sucesses', () => {
     loginPage.acessLoginPage()
     loginPage.loginWithUser(userData.userSucess.username, userData.userSucess.password)
-    /*cy.get(selectorList.userNameField).type(userData.userSucess.username)
-    cy.get(selectorList.passwordField).type(userData.userSucess.password)
-    cy.get(selectorList.loginButton).click()
-    cy.location('pathname').should('equal', '/web/index.php/dashboard/index')
-    cy.get(selectorList.sectionTitleTopBar).contains('Dashboard')
+    dashboardPage.verifyDashboardPage()
+    
+    /*
+    
+
+    
+    
     cy.get(selectorList.myInfoButton).click()
     cy.get(selectorList.firstNameField).clear().type('First Name Test')
     cy.get(selectorList.midleNameField).clear().type('Midle Name Test')
@@ -54,10 +58,8 @@ describe('template spec', () => {
   })
 
   it('Login - Fail', () => {
-    cy.visit('/auth/login')
-    cy.get(selectorList.userNameField).type(userData.userFail.username)
-    cy.get(selectorList.passwordField).type(userData.userFail.password)
-    cy.get(selectorList.loginButton).click()
-    cy.get(selectorList.wrongCredentialAlert)
+    loginPage.acessLoginPage()
+    loginPage.loginWithUser(userData.userFail.password, userData.userFail.password)
+    loginPage.selectorsList().wrongCredentialAlert
   })
 })

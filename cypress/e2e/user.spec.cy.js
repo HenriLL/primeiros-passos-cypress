@@ -18,7 +18,10 @@ describe('template spec', () => {
     buttonSave: "[type='submit']",
     testField: "[options='']",
     dateCloseButton: ".--close",
-    //dateBirthdayCloseButton: '.oxd-toast-container--bottom',
+    firstComboBox: ".oxd-select-text-input",
+    secondComboBox: ".oxd-select-text-input",
+    thridComboBox: ".oxd-select-text-input",
+    genderSelector: ".oxd-radio-wrapper"
   }
 
   
@@ -40,10 +43,15 @@ describe('template spec', () => {
     cy.get(selectorList.dateField).eq(0).clear().type('2025-10-12')
     cy.get(selectorList.dateCloseButton).eq(0).click()
     cy.get(selectorList.dateField).eq(1).clear().type('1990-21-04')
-    //cy.get(selectorList.dateBirthdayCloseButton).click()
-    cy.get(selectorList.buttonSave).eq(0).click()
+    cy.get(selectorList.buttonSave).eq(0).click({ force: true})
+    cy.get('body').should('contain', 'Successfully Updated')
     cy.get('.oxd-toast')
     cy.get(selectorList.testField).clear().type('Test 777')
+    cy.get(selectorList.firstComboBox).eq(0).click()
+    cy.get('.oxd-select-dropdown > :nth-child(11)').click()
+    cy.get(selectorList.secondComboBox).eq(1).click({force: true})
+    cy.get(selectorList.thridComboBox).eq(2).click({force:true})
+    cy.get(selectorList.genderSelector).eq(1).click()
   })
 
   it('Login - Fail', () => {

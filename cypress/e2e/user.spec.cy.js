@@ -33,17 +33,25 @@ describe('template spec', () => {
     loginPage.loginWithAnyUser(userData.userSucess.username, userData.userSucess.password)
     dashboardPage.verifyDashboardPage()
     menuPage.acessingAdmin()
-
-// FAZER O RESTANTE DOS MENUS
+    menuPage.acessingPIM()
+    menuPage.acessingLeave()
+    menuPage.acessingTime()
+    menuPage.acessingRecruitment()
     menuPage.acessigMyInfo()
+    menuPage.acessingPerformance()
+    menuPage.acessingDirectory()
+    //menuPage.acessingMaintenance() PRESICO RESOLVER
+    menuPage.acessingClaim()
+    menuPage.acessingBuzz()
     
-    /*
+    
+   
     
 
     
     
     
-    cy.get(selectorList.firstNameField).clear().type('First Name Test')
+    /*cy.get(selectorList.firstNameField).clear().type('First Name Test')
     cy.get(selectorList.midleNameField).clear().type('Midle Name Test')
     cy.get(selectorList.lastNameField).clear().type('Last Name Test')
     cy.get(selectorList.genericField).eq(4).clear().type('EmploTest')

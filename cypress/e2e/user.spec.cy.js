@@ -32,6 +32,7 @@ describe('template spec', () => {
     loginPage.acessLoginPage()
     loginPage.loginWithAnyUser(userData.userSucess.username, userData.userSucess.password)
     dashboardPage.verifyDashboardPage()
+    
     menuPage.acessingAdmin()
     menuPage.acessingPIM()
     menuPage.acessingLeave()
@@ -40,11 +41,9 @@ describe('template spec', () => {
     menuPage.acessigMyInfo()
     menuPage.acessingPerformance()
     menuPage.acessingDirectory()
-    //menuPage.acessingMaintenance() PRESICO RESOLVER
+    menuPage.acessingMaintenance()
     menuPage.acessingClaim()
     menuPage.acessingBuzz()
-    
-    
    
     
 

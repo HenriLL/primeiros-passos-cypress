@@ -15,8 +15,9 @@ class MenuPage {
         maintenanceButton: "[href='/web/index.php/maintenance/viewMaintenanceModule']",
         claimButton: "[href='/web/index.php/claim/viewClaimModule']",
         buzzButton: "[href='/web/index.php/buzz/viewBuzz']",
-        maintanceNameUser: "[name='username']",
-        maintancePassword: "[name='password']",
+        //maintanceNameUser: "[name='username']",
+        maintancePassword: "[type='password']",
+        maintanceButton: "[type='submit']",
 
     }
     return selectors
@@ -59,9 +60,9 @@ class MenuPage {
     acessingMaintenance () {
         cy.get(this.selectorsList().maintenanceButton).click()
         cy.visit('/maintenance/purgeEmployee')
-        //cy.get(this.selectorsList().maintanceNameUser).type(userData.userSucess.username)
-        //cy.get(this.selectorsList().maintancePassword).type( {force: true}, userData.userSucess.password)
-        //PRECISO RESOLVER
+        //cy.get(this.selectorsList().maintanceNameUser).click({ force: true }).type(userData.userSucess.username)
+        cy.get(this.selectorsList().maintancePassword).click({ waitForAnimations: false }).type(userData.userSucess.password)
+        cy.get(this.selectorsList().maintanceButton).click()
     }
 
     acessingClaim () {

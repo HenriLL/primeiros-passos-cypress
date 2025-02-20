@@ -15,7 +15,6 @@ class MenuPage {
         maintenanceButton: "[href='/web/index.php/maintenance/viewMaintenanceModule']",
         claimButton: "[href='/web/index.php/claim/viewClaimModule']",
         buzzButton: "[href='/web/index.php/buzz/viewBuzz']",
-        //maintanceNameUser: "[name='username']",
         maintancePassword: "[type='password']",
         maintanceButton: "[type='submit']",
 
@@ -60,7 +59,6 @@ class MenuPage {
     acessingMaintenance () {
         cy.get(this.selectorsList().maintenanceButton).click()
         cy.visit('/maintenance/purgeEmployee')
-        //cy.get(this.selectorsList().maintanceNameUser).click({ force: true }).type(userData.userSucess.username)
         cy.get(this.selectorsList().maintancePassword).click({ waitForAnimations: false }).type(userData.userSucess.password)
         cy.get(this.selectorsList().maintanceButton).click()
     }
@@ -71,6 +69,20 @@ class MenuPage {
 
     acessingBuzz () {
         cy.get(this.selectorsList().buzzButton).click()
+    }
+
+    acessingAllMenus () {
+    this.acessingAdmin()
+    this.acessingPIM()
+    this.acessingLeave()
+    this.acessingTime()
+    this.acessingRecruitment()
+    this.acessingPerformance()
+    this.acessingDirectory()
+    this.acessingMaintenance()
+    this.acessingClaim()
+    this.acessingBuzz()
+    this.acessigMyInfo()
     }
 }
 
